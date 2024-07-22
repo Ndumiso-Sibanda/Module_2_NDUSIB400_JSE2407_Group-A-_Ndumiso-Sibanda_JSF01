@@ -1,377 +1,536 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon-32x32.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=0.5" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.x.x/dist/tailwind.min.css">
-    <title>Sales app</title>
-  </head>
-  <body>
-    <div id="app">
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Favicon Logo -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" href="style.css">
 
-      <!--HEADER-->
-    <header class="sticky top-0 z-50" x-data="{ open: false }">
+  </head>
+  <body class="bg-[#caf0f8] sm:mx" >
+    <!-- Header/NavBar -->
+    <header x-data="{ showNavbar: false }" class="sticky z-50 top-0">
       <nav class="bg-gray-500 border-gray-200">
-        <div class="max-w-screen-xl flex items-center justify-between mx-auto p-4">
-          <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="/online-shop.png" class="h-8" alt="Flowbite Logo" />
-            <span class="text-2xl font-semibold text-white">SwiftCart</span>
+        <div
+          class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4"
+        >
+          <a href="/">
+            <button class="flex items-center space-x-3 rtl:space-x-reverse">
+              <img src="/online-shop.png" class="h-8" alt="Flowbite Logo" />
+              <span
+                class="self-center text-2xl font-semibold whitespace-nowrap text-white"
+              >
+               Sales App
+              </span>
+            </button>
           </a>
+
           <button
-            @click="open = !open"
-            class="md:hidden p-2 w-10 h-10 text-sm text-white rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
-            aria-controls="navbar-dropdown"
-            :aria-expanded="open"
+            @click="showNavbar = !showNavbar"
+            data-collapse-toggle="navbar-default"
+            type="button"
+            class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            aria-controls="navbar-default"
+            aria-expanded="false"
           >
             <span class="sr-only">Open main menu</span>
-            <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14" stroke="currentColor" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M1 1h15M1 7h15M1 13h15"/>
+            <svg
+              class="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
             </svg>
           </button>
-          <div :class="open ? 'block' : 'hidden'" class="w-full md:block md:w-auto" id="navbar-dropdown">
-            <ul class="flex flex-col md:flex-row md:space-x-8 p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-500 md:border-0 md:mt-0 font-medium">
-              <li><a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700">Wishlist</a></li>
-              <li class="relative hidden md:block lg:block">
-                <a href="#" class="block">
-                  <div class="absolute left-3 -top-4 t-0">
-                    <p class="flex h-2 w-2 items-center justify-center p-3 text-xs text-white bg-red-500 rounded-full">2</p>
-                  </div>
-                  <svg class="h-6 w-6 stroke-white cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"/>
-                  </svg>
+
+          <div
+            :class="{'hidden': !showNavbar}"
+            class="w-full md:block md:w-auto"
+            id="navbar-dropdown"
+          >
+            <ul
+              class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-500 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-transparent"
+            >
+              <li>
+                <a
+                  href=""
+                  class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                >
+                  Wishlist
                 </a>
               </li>
-              <li class="lg:hidden md:hidden"><a href="#" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700">Cart</a></li>
-              <li><a href="login" class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700">Login</a></li>
+              <a href="">
+                <li class="hidden lg:block md:block relative">
+                  <div class="t-0 absolute left-3 -top-4">
+                    <p
+                      class="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white"
+                    >
+                      2
+                    </p>
+                  </div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    class="file: h-6 w-6 stroke-white cursor-pointer"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                    />
+                  </svg>
+                </li>
+              </a>
+              <li>
+                <a
+                  href=""
+                  class="lg:hidden md:hidden py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                >
+                  Cart
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="login"
+                  class="block py-2 px-3 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0"
+                >
+                  Login
+                </a>
+              </li>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-    </div>
 
-    <!--MODEM-->
-   <div x-data="filterComponent()">
-    <template x-if="error">
-      <div class="text-red-500 p-4">
-          <p x-text="error"></p>
-      </div>
-  </template>
-  <form>
-    <div class="flex lg:w-[31.25rem] sm:w-[95%] md:w-full relative">
-        <button
-            @click="toggleDropdown"
-            id="dropdown-button"
-            class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200"
-            type="button"
-        >
-        <span x-text="filterItem"></span>
-        <svg
-            class="w-2.5 h-2.5 ms-2.5"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 10 6"
-        >
-        <path
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        d="m1 1 4 4 4-4"
-    />
-</svg>
-</button>
-<div
-    x-ref="dropdown"
-    x-show="dropdownOpen"
-    class="z-10 absolute top-[100%] bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
->
-<ul class="py-2 text-sm text-gray-700">
-  <li
-      @click="handleFilter('All categories')"
-      class="inline-flex w-full px-4 py-2 hover:bg-gray-100 cursor-pointer"
-  >
-  All categories
-</li>
-<template x-for="category in categories" :key="category">
-  <li>
-      <button
-          @click="handleFilter(category)"
-          type="button"
-          class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
+    <!-- Product List + Filter and Sort-->
+    <div x-data="productDisplay()" x-init="init()" class="grid justify-center">
+      <!-- Filter and Sort -->
+      <div
+        class="grid lg:flex gap-y-4 gap-x-48 lg:items-start mt-3 mx-auto justify-center"
       >
-          <span x-text="category"></span>
-      </button>
-  </li>
-</template>
-</ul>
-</div>
-<div class="relative w-full">
-  <input
-      type="search"
-      id="search-dropdown"
-      name="searchInput"
-      class="p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-      placeholder="Search products..."
-      x-model="searchTerm"
-      @input="handleSearch"
-  />
-  <button
-  type="submit"
-  class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
->
-<svg
-class="w-4 h-4"
-aria-hidden="true"
-xmlns="http://www.w3.org/2000/svg"
-fill="none"
-viewBox="0 0 20 20"
->
-<path
-stroke="currentColor"
-stroke-linecap="round"
-stroke-linejoin="round"
-stroke-width="2"
-d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
-/>
-</svg>
-<span class="sr-only">Search</span>
-</button>
-</div>
-</div>
-</form>
-</div> 
-
-<!--SORT-->
-<div x-data="sortComponent()">
-  <div class="flex justify-end sm:w-[95%] max-w-[21rem] md:w-full">
-      <label for="sort" class="w-20 my-auto font-semibold">
-          Sort by: 
-      </label>
-      <select
-      @change="handleSort"
-      x-model="sorting"
-      id="sort"
-      class="p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-  >
-  <option value="default">Default</option>
-  <option value="low">Price: Low to High</option>
-  <option value="high">Price: High to Low</option>
-</select>
-</div>
-</div>
-
-<!--Products-->
-<div x-data="productComponent()" x-init="init">
-  <!-- Loading Skeleton -->
-  <div x-show="loading" class="grid justify-center">
-      <div class="lg:max-h-[130rem] max-w-xl mx-auto grid gap-4 grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center lg:max-w-none my-4">
-          <template x-for="index in 20" :key="index">
-              <div class="bg-white max-w-sm p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
-                  <div class="flex items-center justify-center h-48 mb-4 bg-gray-300 rounded dark:bg-gray-700">
-                    <svg class="w-10 h-10 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
-                      <path d="M14.066 0H7v5a2 2 0 0 1-2 2H0v11a1.97 1.97 0 0 0 1.934 2h12.132A1.97 1.97 0 0 0 16 18V2a1.97 1.97 0 0 0-1.934-2ZM10.5 6a1.5 1.5 0 1 1 0 2.999A1.5 1.5 0 0 1 10.5 6Zm2.221 10.515a1 1 0 0 1-.858.485h-8a1 1 0 0 1-.9-1.43L5.6 10.039a.978.978 0 0 1 .936-.57 1 1 0 0 1 .9.632l1.181 2.981.541-1a.945.945 0 0 1 .883-.522 1 1 0 0 1 .879.529l1.832 3.438a1 1 0 0 1-.031.988Z"/>
-                      <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.98 2.98 0 0 0 .13 5H5Z"/>
-                  </svg>
-</div>
-<div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-<div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-<div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-10 mb-4"></div>
-<span class="sr-only">Loading...</span>
-</div>
-</template>
-</div>
-</div>
-   <!-- Error Display -->
-   <div x-show="error" class="grid justify-center">
-    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-        <strong class="font-bold">Error:</strong>
-        <span class="block sm:inline" x-text="error.message"></span>
-    </div>
-</div>
-    <!-- Product List Display -->
-<div x-data="productList()" x-show="!loading && !error" class="grid justify-center">
-  <div class="lg:max-h-[130rem] max-w-xl mx-auto grid gap-4 grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center lg:max-w-none my-4">
-    <template x-for="product in products" :key="product.id">
-      <div @click="handleClick(product.id)" class="flex flex-col max-h-[130rem] cursor-pointer max-w-80 hover:-translate-y-1 hover:scale-105 duration-300 bg-white border border-slate-200 shadow shadow-slate-950/5 rounded-2xl overflow-hidden">
-        <img :src="product.image" class="object-contain h-48 mt-3" alt="Product Image"/>
-        <div class="flex-1 flex flex-col p-6">
-          <header class="mb-2 flex-2">
-            <h2 class="text-lg line-clamp-2 font-extrabold leading-snug text-slate-600">
-              <span x-text="product.title"></span>
-            </h2>
-          </header>
-
-          <!-- Ratings Section -->
-          <div class="flex gap-2 mb-2" x-show="product.rating">
-            <template x-for="index in Math.round(product.rating.rate)" :key="'filled-' + index">
-              <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+        <!-- filter -->
+        <form @submit.prevent="applyFilter">
+          <div class="flex lg:w-[31.25rem] sm:w-[95%] md:w-full relative">
+            <button
+              @click="toggleDropdown"
+              id="dropdown-button"
+              data-dropdown-toggle="dropdown"
+              class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200"
+              type="button"
+            >
+              <span x-text="filterItem"></span>
+              <svg
+                class="w-2.5 h-2.5 ms-2.5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 10 6"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 1 4 4 4-4"
+                />
               </svg>
-            </template>
-            <template x-for="index in 5 - Math.round(product.rating.rate)" :key="'empty-' + index">
-              <svg class="w-4 h-4 text-gray-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-              </svg>
-            </template>
-            <div x-text="product.rating.rate"></div>
-            <div>Reviews: <span x-text="product.rating.count"></span></div>
-          </div>
-
-          <div class="text-base line-clamp-2 font-extrabold text-slate-500 leading-snug">
-            <h2>${{ product.price }}</h2>
-          </div>
-          <div class="flex mt-1 space-x-2">
-            <div class="flex-1">
-              <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10" x-text="product.category"></span>
+            </button>
+            <div
+              x-show="isOpen"
+              @click.away="isOpen = false"
+              id="dropdown"
+              class="z-10 absolute top-[100%] bg-white divide-y divide-gray-100 rounded-lg shadow w-44"
+            >
+              <ul
+                class="py-2 text-sm text-gray-700"
+                aria-labelledby="dropdown-button"
+              >
+                <li
+                  @click="setFilter('All categories')"
+                  class="inline-flex w-full px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                >
+                  All categories
+                </li>
+                <template x-for="category in categories" :key="category">
+                  <li>
+                    <button
+                      @click="setFilter(category)"
+                      type="button"
+                      class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
+                      x-text="category"
+                    ></button>
+                  </li>
+                </template>
+              </ul>
             </div>
-            <div class="flex space-x-2">
-              <button @click.stop="addToFavourites(product.id)">
-                <svg class="me-1.5 h-5 w-5 hover:fill-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" transform="scale(1.6)">
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"/>
+            <div class="relative w-full">
+              <input
+                type="search"
+                id="search-dropdown"
+                name="searchInput"
+                class="p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Search products..."
+                x-model="searchTerm"
+              />
+              <button
+                type="submit"
+                class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+              >
+                <svg
+                  class="w-4 h-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+                  />
                 </svg>
+                <span class="sr-only">Search</span>
               </button>
-              <button class="inline-flex justify-center whitespace-nowrap rounded-lg bg-cyan-700 px-3 py-2 text-sm font-medium text-white hover:bg-cyan-900 focus:ring-4 focus:outline-none focus:ring-indigo-300 transition-colors">
-                Add To Cart
-              </button>
+            </div>
+          </div>
+        </form>
+
+        <!-- Sort -->
+        <div class="flex sm:w-[95%] max-w-[21rem] md:w-full">
+          <label for="sort" class="w-20 my-auto font-semibold">
+            Sort by:
+          </label>
+          <select
+            x-model="sorting"
+            @change="applySorting"
+            id="sort"
+            class="p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+          >
+            <option value="default">Default</option>
+            <option value="low">Price: Low to High</option>
+            <option value="high">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div
+        class="lg:max-h-[130rem] max-w-xl mx-auto grid gap-4 grid-cols-1 lg:grid-cols-4 md:grid-cols-2 items-center lg:max-w-none my-4"
+      >
+        <template x-for="product in filteredProducts" :key="product.id">
+          <div
+            @click="openModal(product)"
+            class="flex flex-col max-h-[130rem] cursor-pointer max-w-80 hover:-translate-y-1 hover:scale-105 duration-300 bg-white border border-slate-200 shadow shadow-slate-950/5 rounded-2xl overflow-hidden"
+          >
+            <img
+              class="object-contain h-48 mt-3"
+              :src="product.image"
+              :alt="product.title"
+            />
+
+            <div class="flex-1 flex flex-col p-6">
+              <div class="flex-1">
+                <header class="mb-2 flex-2">
+                  <h2 class="text-lg line-clamp-2 font-extrabold leading-snug">
+                    <div
+                      class="text-slate-600 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300"
+                      x-text="product.title"
+                    ></div>
+                  </h2>
+                </header>
+
+                <div class="flex items-center mt-2">
+                  <span
+                    class="text-sm text-gray-600 mr-2"
+                    x-text="`Rating: ${product.rating.rate}`"
+                  ></span>
+                  <span
+                    class="text-sm text-gray-600"
+                    x-text="`(${product.rating.count} reviews)`"
+                  ></span>
+                </div>
+                <!-- <div x-data="{ rating: product.rating }"></div> -->
+                <div
+                  class="text-base line-clamp-2 font-extrabold text-slate-500 leading-snug"
+                >
+                  <h2 x-text="`$${product.price}`"></h2>
+                </div>
+              </div>
+
+              <div class="flex mt-1 space-x-2">
+                <div class="justify-start flex-1">
+                  <span
+                    class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10"
+                    x-text="product.category"
+                  ></span>
+                </div>
+                <div class="justify-end space-x-2">
+                  <button @click.stop="addToFavorites(product.id)">
+                    <svg
+                      class="me-1.5 h-5 w-5 hover:fill-red-500"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      transform="scale(1.6)"
+                    >
+                      <path
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
+                      />
+                    </svg>
+                  </button>
+
+                  <button
+                    @click.stop="addToCart(product.id)"
+                    class="inline-flex justify-center whitespace-nowrap rounded-lg bg-cyan-700 px-3 py-2 text-sm font-medium text-white hover:bg-cyan-900 focus-visible:outline-none focus-visible:ring focus-visible:ring-indigo-300 transition-colors"
+                  >
+                    Add To Cart
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+
+      <!-- Modal -->
+      <div
+        x-show="isModalOpen"
+       
+        @keydown.escape.window="closeModal()"
+        class="fixed inset-0 z-50 overflow-y-auto"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div
+        
+          class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+        >
+          <div
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="ease-in duration-200"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+            aria-hidden="true"
+          >
+            <span
+              class="hidden sm:inline-block sm:align-middle sm:h-screen"
+              aria-hidden="true"
+              >&#8203;</span
+            >
+
+            <div
+            @click.away="closeModal()"
+              x-transition:enter="ease-out duration-300"
+              x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+              x-transition:leave="ease-in duration-200"
+              x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+              x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+            >
+              <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:flex sm:items-start">
+                  <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <h3
+                      class="text-lg leading-6 font-medium text-gray-900"
+                      id="modal-title"
+                      x-text="selectedProduct.title"
+                    ></h3>
+                    <div class="mt-2">
+                      <img
+                        :src="selectedProduct.image"
+                        :alt="selectedProduct.title"
+                        class="w-full h-64 object-contain mb-4"
+                      />
+                      <p
+                        class="text-sm text-gray-500"
+                        x-text="selectedProduct.description"
+                      ></p>
+                      <p
+                        class="text-lg font-bold mt-2"
+                        x-text="`$${selectedProduct.price}`"
+                      ></p>
+                      <p
+                        class="text-sm text-gray-600 mt-1"
+                        x-text="`Category: ${selectedProduct.category}`"
+                      ></p>
+                      <div class="flex items-center mt-2">
+                        <span
+                          class="text-sm text-gray-600 mr-2"
+                          x-text="`Rating: ${selectedProduct.rating.rate}`"
+                        ></span>
+                        <span
+                          class="text-sm text-gray-600"
+                          x-text="`(${selectedProduct.rating.count} reviews)`"
+                        ></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse"
+              >
+                <button
+                  @click="closeModal()"
+                  type="button"
+                  class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-gray-100 text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                >
+                  Close
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </template>
-  </div>
-</div>
+    </div>
 
+    <script>
+      function createProductApi() {
+        return {
+          async fetchProducts() {
+            try {
+              const response = await fetch("https://fakestoreapi.com/products");
+              if (!response.ok) {
+                throw new Error(
+                  "Data fetching failed. Please check your network connection and reload."
+                );
+              }
+              return await response.json();
+            } catch (error) {
+              console.error(error);
+              return [];
+            }
+          },
 
+          async fetchCategories() {
+            try {
+              const response = await fetch(
+                "https://fakestoreapi.com/products/categories"
+              );
+              if (!response.ok) {
+                throw new Error(
+                  "Data fetching failed, please check your network connection"
+                );
+              }
+              const data = await response.json();
+              this.categories = data;
+              return data;
+            } catch (error) {
+              console.error("Error fetching categories:", error);
+            }
+          },
+        };
+      }
 
-
-
-  <script>
-  function filterComponent() {
-      return {
+      function productDisplay() {
+        return {
+          products: [],
+          filteredProducts: [],
           categories: [],
-          filterItem: 'Select category',
-          error: null,
-          searchTerm: '',
-          dropdownOpen: false,
+          productApi: createProductApi(),
+          isOpen: false,
+          filterItem: "All categories",
+          searchTerm: "",
+          sorting: "default",
+          isModalOpen: false,
+          selectedProduct: [],
+
           async init() {
-              try {
-                  const response = await fetch('https://fakestoreapi.com/products/categories');
-                  if (!response.ok) throw new Error('Failed to fetch categories');
-                  this.categories = await response.json();
-              } catch (error) {
-                  this.error = error.message;
-              }
+            this.products = await this.productApi.fetchProducts();
+            this.filteredProducts = [...this.products];
+            this.categories = await this.productApi.fetchCategories();
           },
+
           toggleDropdown() {
-              this.dropdownOpen = !this.dropdownOpen;
+            this.isOpen = !this.isOpen;
           },
-          handleFilter(category) {
-              this.filterItem = category;
-              this.dropdownOpen = false;
-           
-              this.fetchProducts(); 
+
+          setFilter(category) {
+            this.filterItem = category;
+            this.isOpen = false;
+            this.applyFilter();
           },
-          async handleSearch(event) {
-              this.searchTerm = event.target.value;
-              try {
-                  const response = await fetch(`https://fakestoreapi.com/products?search=${this.searchTerm}`);
-                  if (!response.ok) throw new Error('Failed to search products');
-                  const data = await response.json();
-              } catch (error) {
-                  this.error = error.message;
-              }
-          }
+
+          openModal(product) {
+            this.selectedProduct = product;
+            this.isModalOpen = true;
+            console.log(product.rating)
+          },
+
+          closeModal() {
+            this.isModalOpen = false;
+            this.selectedProduct = null;
+            console.log("close");
+          },
+
+          applyFilter() {
+            this.filteredProducts = this.products.filter((product) => {
+              const matchesCategory =
+                this.filterItem === "All categories" ||
+                product.category === this.filterItem;
+              const matchesSearch = product.title
+                .toLowerCase()
+                .includes(this.searchTerm.toLowerCase());
+              return matchesCategory && matchesSearch;
+            });
+            this.applySorting();
+          },
+
+          applySorting() {
+            switch (this.sorting) {
+              case "low":
+                this.filteredProducts.sort((a, b) => a.price - b.price);
+                break;
+              case "high":
+                this.filteredProducts.sort((a, b) => b.price - a.price);
+                break;
+              default:
+                this.filteredProducts.sort((a, b) => a.id - b.id);
+            }
+          },
+        };
       }
-  }
 
-  document.addEventListener('alpine:init', () => {
-      Alpine.data('filterComponent', filterComponent);
-  });
-  //Component sort
-  function sortComponent() {
-            return {
-                sorting: 'default',
-                async handleSort(event) {
-                    this.sorting = event.target.value;
-                    this.sortProducts();
-                },
-                async sortProducts() {
-                    try {
-                        const response = await fetch(`https://fakestoreapi.com/products?sort=${this.sorting}`);
-                        if (!response.ok) throw new Error('Failed to sort products');
-                        const data = await response.json();
-                    
-                    } catch (error) {
-                        console.error(error.message);
-                    }
-                },
-            };
-        }
-
-        document.addEventListener('alpine:init', () => {
-            Alpine.data('sortComponent', sortComponent);
-        });
-
-     
-//Product fetch
-        async function fetchCategories() {
-      try {
-        const response = await fetch('https://fakestoreapi.com/products/categories', {
-          headers: { 'Content-Type': 'application/json' }
-        });
-        if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
-        return await response.json();
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-        throw new Error('Failed to fetch categories');
-      }
-    }
-
-    async function fetchProduct(id) {
-      try {
-        const response = await fetch(`https://fakestoreapi.com/products/${id}`, {
-          headers: { 'Content-Type': 'application/json' }
-        });
-        if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
-        return await response.json();
-      } catch (error) {
-        console.error(`Error fetching product with ID ${id}:`, error);
-        throw new Error('Failed to fetch product');
-      }
-    }
-
-    document.addEventListener('alpine:init', () => {
-      Alpine.data('productComponent', () => ({
-        loading: true,
-        error: null,
-        products: [],
-
-        async init() {
-          try {
-            this.loading = true;
-            const response = await fetch('https://fakestoreapi.com/products');
-            this.products = await response.json();
-          } catch (error) {
-            this.error = error;
-          } finally {
-            this.loading = false;
-          }
-        },
-
-        handleClick(id) {
-          console.log(`Clicked product with ID ${id}`);
-        
-        },
-
-        addToFavourites(id) {
-          console.log(`Added product ${id} to favourites`);
-        }
-      }));
-    });
-</script>
-   <script type="module" src="src/main.js"></script>
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("productDisplay", productDisplay);
+      });
+    </script>
+    <script type="module" src="./src/main.js"></script>
   </body>
 </html>
