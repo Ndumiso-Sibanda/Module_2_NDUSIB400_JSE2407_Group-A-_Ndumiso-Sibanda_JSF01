@@ -184,6 +184,13 @@ d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
 </template>
 </div>
 </div>
+   <!-- Error Display -->
+   <div x-show="error" class="grid justify-center">
+    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <strong class="font-bold">Error:</strong>
+        <span class="block sm:inline" x-text="error.message"></span>
+    </div>
+</div>
 
 
 <script>
