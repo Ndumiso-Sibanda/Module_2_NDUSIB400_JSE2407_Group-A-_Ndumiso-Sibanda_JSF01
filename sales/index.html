@@ -91,6 +91,21 @@
   >
   All categories
 </li>
+<template x-for="category in categories" :key="category">
+  <li>
+      <button
+          @click="handleFilter(category)"
+          type="button"
+          class="inline-flex w-full px-4 py-2 hover:bg-gray-100"
+      >
+          <span x-text="category"></span>
+      </button>
+  </li>
+</template>
+</ul>
+</div>
+
+
    </div> 
     <script type="module" src="src/main.js"></script>
   </body>
